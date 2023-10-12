@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        let options = {
+            'rock': 0,
+            'paper': 1,
+            'scissors': 2
+        }
+
+        function computerChoice() {
+            let choice = Math.floor(Math.random * 3);
+            return choice
+        }
+
+        function playerChoice() { 
+            let choice = prompt("Rock, paper os scissors?")
+            if (choice.toLowerCase() === 'rock') {
+                return 0
+            } else if (choice.toLowerCase() === 'paper') {
+                return 1
+            } else if (choice.toLowerCase() === 'scissors') {
+                return 2
+            } else {
+                console.error('Wrong option')
+            }
+        }
+
+        function playRound(playerSelection, getComputerChoice) {
+            let won = true
+
+            console.log('Your choice: ' + playerSelection)
+            console.log("Computer's choice: " + getComputerChoice)
+
+            if (playerSelection == getComputerChoice) {
+                console.log('Tie')
+                return
+            } else {
+                if (playerSelection > getComputerChoice) {
+                    won = false
+                } else if (getComputerChoice == 2 && playerSelection == 0) {
+                    won = true
+                } else {
+                    won = false
+                }
+            }
+
+            if (won == true) {
+                console.log('You won!')
+            } else {
+                console.log('You lost')
+            }
+
+        }
+
+        playRound(playerChoice(), computerChoice())
+
+    </script>
+
+</body>
+</html>
