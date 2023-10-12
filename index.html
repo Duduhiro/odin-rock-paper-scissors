@@ -10,17 +10,22 @@
     <script>
 
         let options = {
-            'rock': 0,
-            'paper': 1,
-            'scissors': 2
+            0: 'Rock',
+            1: 'Paper',
+            2: 'Scissors'
         }
 
         function computerChoice() {
-            let choice = Math.floor(Math.random * 3);
+            
+            // Get the computers choice by getting a random int from 0 - 2
+            let choice = Math.floor(Math.random() * 3);
             return choice
         }
 
+
         function playerChoice() { 
+
+            // Get the players choice
             let choice = prompt("Rock, paper os scissors?")
             if (choice.toLowerCase() === 'rock') {
                 return 0
@@ -33,18 +38,21 @@
             }
         }
 
+
         function playRound(playerSelection, getComputerChoice) {
+            
+            // This function represents a round from the game
             let won = true
 
-            console.log('Your choice: ' + playerSelection)
-            console.log("Computer's choice: " + getComputerChoice)
+            console.log('Your choice: ' + options[playerSelection])
+            console.log("Computer's choice: " + options[getComputerChoice])
 
             if (playerSelection == getComputerChoice) {
-                console.log('Tie')
-                return
+                // If the playerChoice and computerChoice are the same, declare a tie
+                return 0
             } else {
                 if (playerSelection > getComputerChoice) {
-                    won = false
+                    won = true
                 } else if (getComputerChoice == 2 && playerSelection == 0) {
                     won = true
                 } else {
@@ -53,14 +61,35 @@
             }
 
             if (won == true) {
-                console.log('You won!')
+                return 1
             } else {
-                console.log('You lost')
+                return 2
             }
 
         }
 
-        playRound(playerChoice(), computerChoice())
+        function game() {
+            
+            let playerCount = 0
+            let compCount = 0
+            let result = 0
+
+            for (let i = 1; i < 6; i++) {
+                console.log('Round ' + i)
+                result = playRound(playerChoice(), computerChoice())
+                if (result == 1) {
+                    playerCount++
+                } else if (result == 2) {
+                    compCount++
+                }
+            }
+
+            console.log('Final score')
+            console.log('Player: ' + playerCount)
+            console.log('Computer: ' + compCount)
+        }
+        
+        game()
 
     </script>
 
