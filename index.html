@@ -3,96 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
     
-    <script>
+    <div class="d-flex" id="score-wrapper">
+        <div class="round-wrapper">
+            <h1 id="round">Round</h1>
+        </div>
+        <div class="d-flex" style="align-items: center; flex-direction: column;">
+            <h1 class="player">Player</h1>
+            <div id="player-choice">
 
-        let options = {
-            0: 'Rock',
-            1: 'Paper',
-            2: 'Scissors'
-        }
+            </div>
+            <div class="score">
+                <p id="player-score"></p>
+            </div>
+        </div>
+        <div class="d-flex" style="align-items: center; flex-direction: column;">
+            <h1 class="player">
+                Computer
+            </h1>
+            <div id="comp-choice">
 
-        function computerChoice() {
-            
-            // Get the computers choice by getting a random int from 0 - 2
-            let choice = Math.floor(Math.random() * 3);
-            return choice
-        }
+            </div>
+            <div class="score">
+                <p id="comp-score"></p>
+            </div>
+        </div>
+    </div>
 
+    <div class="buttons">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+    </div>
 
-        function playerChoice() { 
-
-            // Get the players choice
-            let choice = prompt("Rock, paper os scissors?")
-            if (choice.toLowerCase() === 'rock') {
-                return 0
-            } else if (choice.toLowerCase() === 'paper') {
-                return 1
-            } else if (choice.toLowerCase() === 'scissors') {
-                return 2
-            } else {
-                console.error('Wrong option')
-            }
-        }
-
-
-        function playRound(playerSelection, getComputerChoice) {
-            
-            // This function represents a round from the game
-            let won = true
-
-            console.log('Your choice: ' + options[playerSelection])
-            console.log("Computer's choice: " + options[getComputerChoice])
-
-            if (playerSelection == getComputerChoice) {
-                // If the playerChoice and computerChoice are the same, declare a tie
-                return 0
-            } else {
-                if (playerSelection > getComputerChoice) {
-                    won = true
-                } else if (getComputerChoice == 2 && playerSelection == 0) {
-                    won = true
-                } else {
-                    won = false
-                }
-            }
-
-            if (won == true) {
-                return 1
-            } else {
-                return 2
-            }
-
-        }
-
-        function game() {
-            
-            // Simulate the game with 5 rounds and count the scores
-            let playerCount = 0
-            let compCount = 0
-            let result = 0
-
-            for (let i = 1; i < 6; i++) {
-                console.log('Round ' + i)
-                result = playRound(playerChoice(), computerChoice())
-                if (result == 1) {
-                    playerCount++
-                } else if (result == 2) {
-                    compCount++
-                }
-            }
-
-            console.log('Final score')
-            console.log('Player: ' + playerCount)
-            console.log('Computer: ' + compCount)
-        }
-        
-        game()
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
